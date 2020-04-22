@@ -13,21 +13,26 @@ public class SpringDataJpaPaginationApplication {
 		 ConfigurableApplicationContext bean =  SpringApplication.run(SpringDataJpaPaginationApplication.class, args);
 		 EmployeeService service = bean.getBean(EmployeeService.class);
 		 
-		 String name[] = {"Ram Kumar", "Suresh Kumar", "Neeraj Kumar", "Anil Kumar", "Deeraj Kumar"};
+		 String name[] = {"Ram Kumar", "Suresh Kumar", "Neeraj Kumar", "Aman Kumar", "Deeraj Kumar",};
 		 float salary[] = {20000, 18000, 23000, 19000, 25000};
 		 
-		 Employee emp[] = new Employee[5];
+		 Employee emp[] = new Employee[20];
 		 
+		 int x=0;
 		 for(int i=0; i<emp.length; i++) {
 			 emp[i] = new Employee();
-			 emp[i].setName(name[i]);
-			 emp[i].setSalary(salary[i]);
+			 emp[i].setName(name[x]);
+			 emp[i].setSalary(salary[x]);
 			 service.addEmployee(emp[i]);
+			 x++;
+			 if(x == 5)
+				 x = 0;
 		 }
 		 
 		 System.out.println("All Employees!!");
 		 
-		 service.showAllEmployee();
+//		 service.showAllEmployee();
+		 service.getAllEmployee(0, 20);
 	}
 
 }
